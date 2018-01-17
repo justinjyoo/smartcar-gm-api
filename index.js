@@ -1,10 +1,12 @@
-const express = require('express');
+
 const axios = require('axios')
-const app = express();
 const utility = require('./lib/utility')
+const express = require('express');
+
+const app = express();
 
 // https://localhost:3000/
-app.listen(3000, () => console.log('Example app listening on port 3000!'))
+app.listen(3000, () => console.log('GM to Smartcar API is listening on port 3000!'))
 
 app.get('/', (req, res) => {
   console.log('/ success!')
@@ -16,7 +18,6 @@ app.post('/vehicles/:id', (req, res) => {
       "id": req.params.id,
       "responseType": "JSON"
   }).then( (response) => {
-
     let gmResponseData = response.data.data;
 
     const vehiclesSmartcarResponse = {
@@ -35,7 +36,6 @@ app.post('/vehicles/:id/doors', (req, res) => {
       "id": req.params.id,
       "responseType": "JSON"
   }).then( (response) => {
-
     let gmResponseData = response.data.data;
 
     const getSecurityStatusSmartcarResponse =

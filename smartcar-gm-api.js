@@ -13,12 +13,12 @@ app.use(function (req, res, next) {
 
 app.get('/', (req, res) => {
   console.log('/ success!')
-  res.status(400).send('hello wfdsorld')
+  res.status(400).send('hello world')
   res.end()
 })
 
-app.post('/vehicles', (req, res) => {
-  console.log('test')
+app.post('/vehicles/:id', (req, res) => {
+  axios.post
   res.status(400).send('posted!')
 })
 
@@ -28,3 +28,58 @@ app.post('/vehicles', (req, res) => {
 //curl -X GET smartcar-gm-api.js http://localhost:3000/
 
 
+// curl http://gmapi.azurewebsites.net/getVehicleInfoService \
+//        -X POST \
+//        -H 'Content-Type: application/json' \
+//        -d '{"id": "1234", "responseType": "JSON"}' \
+
+// SMARTCAR SPEC
+// Request:
+// GET /vehicles/:id
+
+// Response:
+// {
+//   "vin": "1213231",
+//   "color": "Metallic Silver",
+//   "doorCount": 4,
+//   "driveTrain": "v8"
+// }
+
+
+
+
+// GM API
+// Request:
+// POST /getVehicleInfoService
+
+// Content-Type: application/json
+// {
+//   "id": "1234",
+//   "responseType": "JSON"
+// }
+// Response:
+// {
+//   "service": "getVehicleInfo",
+//   "status": "200",
+//   "data": {
+//     "vin": {
+//       "type": "String",
+//       "value": "123123412412"
+// }, "color": {
+//       "type": "String",
+//       "value": "Metallic Silver"
+//     },
+//     "fourDoorSedan": {
+//       "type": "Boolean",
+//       "value": "True"
+//     },
+//     "twoDoorCoupe": {
+//       "type": "Boolean",
+//       "value": "False"
+//     },
+//     "driveTrain": {
+//       "type": "String",
+//       "value": "v8"
+//     }
+//   }
+// }

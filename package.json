@@ -1,0 +1,25 @@
+{
+  "name": "smartcar-gm-api",
+  "version": "1.0.0",
+  "description": "''",
+  "main": "smartcar-gm-api.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/justinjyoo/smartcar-gm-api.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/justinjyoo/smartcar-gm-api/issues"
+  },
+  "homepage": "https://github.com/justinjyoo/smartcar-gm-api#readme",
+  "devDependencies": {
+    "nodemon": "^1.14.11"
+  },
+  "dependencies": {
+    "axios": "^0.17.1"
+  }
+}

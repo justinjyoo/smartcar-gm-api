@@ -20,7 +20,7 @@ app.get('/vehicles/:id', ( req, res ) => {
   const vehicleID = req.params.id
 
   if( !vehicleID ) {
-    res.status(400).send('A vehicle id is required.')
+    res.status(400).send('A vehicle id parameter is required.')
   }
 
   instance.post( '/getVehicleInfoService', Object.assign({ id:  vehicleID }, config))
@@ -36,7 +36,7 @@ app.get('/vehicles/:id/doors', ( req, res ) => {
   const vehicleID = req.params.id
 
   if( !vehicleID ) {
-    res.status(400).send('A vehicle id is required.')
+    res.status(400).send('A vehicle id parameter is required.')
   }
 
 
@@ -53,7 +53,7 @@ app.get('/vehicles/:id/fuel', (req, res) => {
   const vehicleID = req.params.id
 
   if( !vehicleID ) {
-    res.status(400).send('A vehicle id is required.')
+    res.status(400).send('A vehicle id parameter is required.')
   }
 
 
@@ -70,7 +70,7 @@ app.get('/vehicles/:id/battery', ( req, res ) => {
   const vehicleID = req.params.id
 
   if( !vehicleID ) {
-    res.status(400).send('A vehicle id is required.')
+    res.status(400).send('A vehicle id parameter is required.')
   }
 
   instance.post('/getEnergyService', Object.assign({ id: vehicleID }, config))
@@ -87,11 +87,11 @@ app.post('/vehicles/:id/engine', ( req, res ) => {
   const commandType = req.query.action
 
   if( !vehicleID ) {
-    res.status(400).send('A vehicle id is required.')
+    res.status(400).send('A vehicle id parameter is required.')
   }
 
   if( !commandType ) {
-    res.status(400).send('A engine action is required.')
+    res.status(400).send('A engine action parameter is required.')
   }
 
   instance.post('/actionEngineService', Object.assign({
@@ -104,3 +104,8 @@ app.post('/vehicles/:id/engine', ( req, res ) => {
     res.status(200).send(smartcarEngineActionResponse)
   })
 })
+
+
+app.all('*', function(req, res){
+  res.status(404).send('There was an error in the requested route.');
+});

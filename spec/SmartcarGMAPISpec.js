@@ -1,4 +1,5 @@
 const request = require('request');
+const { stub } = require('sinon')
 const expect = require('chai').expect;
 
 describe('/vehicles/:id route', function() {
@@ -15,3 +16,4 @@ describe('/vehicles/:id route', function() {
     })
   })
 });
+

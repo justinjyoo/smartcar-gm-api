@@ -1,4 +1,4 @@
-const convert = require('./lib/utility')
+const construct = require('./lib/utility')
 const express = require('express')
 
 const app = express()
@@ -26,7 +26,7 @@ app.get('/vehicles/:id', ( req, res ) => {
   instance.post( '/getVehicleInfoService', Object.assign({ id:  vehicleID }, config))
   .then(( response ) => {
     let gmResponseData = response.data.data
-    let smartcarVehiclesInfoResponse = convert.vehiclesInfoResponseObject(gmResponseData)
+    let smartcarVehiclesInfoResponse = construct.vehiclesInfoResponseObject(gmResponseData)
     res.status(200).send(smartcarVehiclesInfoResponse)
   })
 })
@@ -43,7 +43,7 @@ app.get('/vehicles/:id/doors', ( req, res ) => {
   instance.post('/getSecurityStatusService', Object.assign({ id: vehicleID }, config))
   .then(( response ) => {
     let gmResponseData = response.data.data
-    let smartcarDoorSecResponse = convert.doorSecResponseObject(gmResponseData)
+    let smartcarDoorSecResponse = construct.doorSecResponseObject(gmResponseData)
     res.status(200).send(smartcarDoorSecResponse)
   })
 })
@@ -60,7 +60,7 @@ app.get('/vehicles/:id/fuel', (req, res) => {
   instance.post('/getEnergyService', Object.assign({ id: vehicleID }, config))
   .then(( response ) => {
     let gmResponseData = response.data.data
-    let smartcarFuelResponse = convert.energyRangeObject(gmResponseData, 'fuel')
+    let smartcarFuelResponse = construct.energyRangeObject(gmResponseData, 'fuel')
     res.status(200).send(smartcarFuelResponse)
   })
 }).cat
@@ -76,7 +76,7 @@ app.get('/vehicles/:id/battery', ( req, res ) => {
   instance.post('/getEnergyService', Object.assign({ id: vehicleID }, config))
   .then(( response ) => {
     let gmResponseData = response.data.data
-    let smartcarBatteryResponse = convert.energyRangeObject(gmResponseData, 'battery')
+    let smartcarBatteryResponse = construct.energyRangeObject(gmResponseData, 'battery')
     res.status(200).send(smartcarBatteryResponse)
   })
 })
@@ -96,11 +96,11 @@ app.post('/vehicles/:id/engine', ( req, res ) => {
 
   instance.post('/actionEngineService', Object.assign({
     id: vehicleID,
-    command: convert.convertEngineActionType(commandType)
+    command: construct.engineActionType(commandType)
   }, config ))
   .then(( response ) => {
     let gmResponseData = response.data
-    let smartcarEngineActionResponse = convert.engineActionResponseObject(gmResponseData)
+    let smartcarEngineActionResponse = construct.engineActionResponseObject(gmResponseData)
     res.status(200).send(smartcarEngineActionResponse)
   })
 })

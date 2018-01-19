@@ -12,7 +12,7 @@ let config = { 'responseType': 'JSON' }
 app.listen(port, () => console.log(`GM to Smartcar API is listening on port ${ port }!` ))
 
 app.get('/', ( req, res ) => {
-  res.status( 200 ).send('hello world')
+  res.status( 200 ).send('Welcome to the GM-Smartcar API! Please make a request to one of the available routes.')
 })
 
 app.get('/vehicles/:id', ( req, res ) => {

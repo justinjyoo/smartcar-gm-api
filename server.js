@@ -5,8 +5,8 @@ const app = express()
 const axios = require('axios')
 const port = process.env.PORT || 3000
 
-let instance = axios.create({ baseURL: 'http://gmapi.azurewebsites.net' })
-let config = { 'responseType': 'JSON' }
+const instance = axios.create({ baseURL: 'http://gmapi.azurewebsites.net' })
+const config = { 'responseType': 'JSON' }
 
 // https://localhost:3000/
 app.listen(port, () => console.log(`GM to Smartcar API is listening on port ${ port }!` ))
@@ -25,8 +25,8 @@ app.get('/vehicles/:id', ( req, res ) => {
 
   instance.post( '/getVehicleInfoService', Object.assign({ id:  vehicleID }, config))
   .then(( response ) => {
-    let gmResponseData = response.data.data
-    let smartcarVehiclesInfoResponse = construct.vehiclesInfoObject(gmResponseData)
+    const gmResponseData = response.data.data
+    const smartcarVehiclesInfoResponse = construct.vehiclesInfoObject(gmResponseData)
     res.status(200).send(smartcarVehiclesInfoResponse)
   })
 })
@@ -42,8 +42,8 @@ app.get('/vehicles/:id/doors', ( req, res ) => {
 
   instance.post('/getSecurityStatusService', Object.assign({ id: vehicleID }, config))
   .then(( response ) => {
-    let gmResponseData = response.data.data
-    let smartcarDoorSecResponse = construct.doorSecObject(gmResponseData)
+    const gmResponseData = response.data.data
+    const smartcarDoorSecResponse = construct.doorSecObject(gmResponseData)
     res.status(200).send(smartcarDoorSecResponse)
   })
 })
@@ -59,8 +59,8 @@ app.get('/vehicles/:id/fuel', (req, res) => {
 
   instance.post('/getEnergyService', Object.assign({ id: vehicleID }, config))
   .then(( response ) => {
-    let gmResponseData = response.data.data
-    let smartcarFuelResponse = construct.energyRangeObject(gmResponseData, 'fuel')
+    const gmResponseData = response.data.data
+    const smartcarFuelResponse = construct.energyRangeObject(gmResponseData, 'fuel')
     res.status(200).send(smartcarFuelResponse)
   })
 }).cat
@@ -75,8 +75,8 @@ app.get('/vehicles/:id/battery', ( req, res ) => {
 
   instance.post('/getEnergyService', Object.assign({ id: vehicleID }, config))
   .then(( response ) => {
-    let gmResponseData = response.data.data
-    let smartcarBatteryResponse = construct.energyRangeObject(gmResponseData, 'battery')
+    const gmResponseData = response.data.data
+    const smartcarBatteryResponse = construct.energyRangeObject(gmResponseData, 'battery')
     res.status(200).send(smartcarBatteryResponse)
   })
 })
@@ -99,8 +99,8 @@ app.post('/vehicles/:id/engine', ( req, res ) => {
     command: construct.engineActionType(commandType)
   }, config ))
   .then(( response ) => {
-    let gmResponseData = response.data
-    let smartcarEngineActionResponse = construct.engineActionObject(gmResponseData)
+    const gmResponseData = response.data
+    const smartcarEngineActionResponse = construct.engineActionObject(gmResponseData)
     res.status(200).send(smartcarEngineActionResponse)
   })
 })

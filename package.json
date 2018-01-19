@@ -20,7 +20,8 @@
     "chai": "^4.1.2",
     "mocha": "^4.1.0",
     "nodemon": "^1.14.11",
-    "request": "^2.83.0"
+    "request": "^2.83.0",
+    "sinon": "^4.1.6"
   },
   "dependencies": {
     "axios": "^0.17.1"

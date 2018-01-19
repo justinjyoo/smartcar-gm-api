@@ -3,12 +3,13 @@ const express = require('express');
 
 const app = express();
 const axios = require('axios')
+const port = process.env.PORT || 3000
 
 let gmAxiosInstance = axios.create({ baseURL: 'http://gmapi.azurewebsites.net' });
 let gmAxiosConfig = { 'responseType': 'JSON' }
 
 // https://localhost:3000/
-app.listen(3000, () => console.log('GM to Smartcar API is listening on port 3000!'))
+app.listen(port, () => console.log('GM to Smartcar API is listening on port 3000!'))
 
 app.get('/', (req, res) => {
   res.status(200).send('hello world')

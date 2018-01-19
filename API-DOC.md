@@ -17,7 +17,7 @@ GET /vehicles/:id
 ### Example Response
 
 ```json
-Status: 200 Created
+Status: 200 OK
 
 {
   "vin": "1213231",
@@ -36,7 +36,7 @@ GET /vehicles/:id/doors
 ### Example Response
 
 ```json
-Status: 200 Created
+Status: 200 OK
 
 [
   {
@@ -58,7 +58,7 @@ GET /vehicles/:id/fuel
 ### Example Response
 
 ```json
-Status: 200 Created
+Status: 200 OK
 
 {
   "percent": 30
@@ -74,7 +74,7 @@ GET /vehicles/:id/battery
 ### Example Response
 
 ```json
-Status: 200 Created
+Status: 200 OK
 
 {
   "percent": 50

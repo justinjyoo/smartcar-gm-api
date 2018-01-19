@@ -7,23 +7,6 @@ const axios = require('axios')
 let gmAxiosInstance = axios.create({ baseURL: 'http://gmapi.azurewebsites.net' });
 let gmAxiosConfig = { 'responseType': 'JSON' }
 
-// make sure contentType/other headers are set properly
-// status codes are correct
-// catch errors
-//        1. if gm api times out )... status code 503?
-//        2. can't parse the response into JSON or if the data comes back as unexpected
-// get it up on heroku
-// stub out a 500 or a timeout error from the gm api
-// return a 200 so that an error and then handle the error on the client side
-// configure a base URL with axios, possibly in a config file
-// export Postman API calls so it's easy for them to load and query the API
-// raise an exception that the gm, pagerDuty is an example of a service that devTeam
-// ReadMe.md with an API doc
-//      1. how to run tests
-//      2. example curl command etc. etc.
-//      3. npm install
-
-
 // https://localhost:3000/
 app.listen(3000, () => console.log('GM to Smartcar API is listening on port 3000!'))
 

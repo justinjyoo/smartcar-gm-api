@@ -12,7 +12,7 @@ const gmAPI = require('../lib/gmAPIRequests.js')
 describe('GET /vehicles/:id', function() {
 
   beforeEach( () => {
-    sandbox.stub(gmAPI, 'get')
+    sandbox.stub(gmAPI, 'post')
 
   })
 
@@ -58,9 +58,9 @@ describe('GET /vehicles/:id', function() {
       "driveTrain": 'v8'
     }
 
-    gmAPI.get.resolves(mockGMRes)
+    gmAPI.post.resolves(mockGMRes)
 
-    return gmAPI.get()
+    return gmAPI.post()
     .then( res => {
       const gmResponseData = res.data.data
       const smartcarVehiclesInfoResponse = construct.vehiclesInfoObject(gmResponseData)

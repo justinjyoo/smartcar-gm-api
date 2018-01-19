@@ -16,7 +16,13 @@ app.get('/', ( req, res ) => {
 })
 
 app.get('/vehicles/:id', ( req, res ) => {
-  instance.post('/getVehicleInfoService', Object.assign({ id: req.params.id }, config))
+  const vehicleID = req.params.id
+
+  if( !vehicleID ) {
+    res.status(400).send('A vehicle id is required.')
+  }
+
+  instance.post('/getVehicleInfoService', Object.assign({ id:  vehicleID }, config))
   .then( ( response ) => {
     let gmResponseData = response.data.data
     let smartcarVehiclesInfoResponse = convert.vehiclesInfoResponseObject(gmResponseData)
@@ -25,7 +31,14 @@ app.get('/vehicles/:id', ( req, res ) => {
 })
 
 app.get('/vehicles/:id/doors', ( req, res ) => {
-  instance.post('/getSecurityStatusService', Object.assign({ id: req.params.id }, config))
+  const vehicleID = req.params.id
+
+  if( !vehicleID ) {
+    res.status(400).send('A vehicle id is required.')
+  }
+
+
+  instance.post('/getSecurityStatusService', Object.assign({ id: vehicleID }, config))
   .then( ( response ) => {
     let gmResponseData = response.data.data
     let smartcarDoorSecResponse = convert.doorSecResponseObject(gmResponseData)
@@ -34,16 +47,29 @@ app.get('/vehicles/:id/doors', ( req, res ) => {
 })
 
 app.get('/vehicles/:id/fuel', (req, res) => {
-  instance.post('/getEnergyService', Object.assign({ id: req.params.id }, config))
+  const vehicleID = req.params.id
+
+  if( !vehicleID ) {
+    res.status(400).send('A vehicle id is required.')
+  }
+
+
+  instance.post('/getEnergyService', Object.assign({ id: vehicleID }, config))
   .then( ( response ) => {
     let gmResponseData = response.data.data
     let smartcarFuelResponse = convert.energyRangeObject(gmResponseData, 'fuel')
     res.status(200).send(smartcarFuelResponse)
   })
-})
+}).cat
 
 app.get('/vehicles/:id/battery', ( req, res ) => {
-  instance.post('/getEnergyService', Object.assign({ id: req.params.id }, config))
+  const vehicleID = req.params.id
+
+  if( !vehicleID ) {
+    res.status(400).send('A vehicle id is required.')
+  }
+
+  instance.post('/getEnergyService', Object.assign({ id: vehicleID }, config))
   .then( ( response ) => {
     let gmResponseData = response.data.data
     let smartcarBatteryResponse = convert.energyRangeObject(gmResponseData, 'battery')
@@ -52,9 +78,21 @@ app.get('/vehicles/:id/battery', ( req, res ) => {
 })
 
 app.post('/vehicles/:id/engine', ( req, res ) => {
+
+  const vehicleID = req.params.id
+  const commandType = req.query.action
+
+  if( !vehicleID ) {
+    res.status(400).send('A vehicle id is required.')
+  }
+
+  if( !commandType ) {
+    res.status(400).send('A engine action is required.')
+  }
+
   instance.post('/actionEngineService', Object.assign({
-    id: req.params.id,
-    command: convert.convertEngineActionType(req.query.action)
+    id: vehicleID,
+    command: convert.convertEngineActionType(commandType)
   }, config))
   .then( ( response ) => {
     let gmResponseData = response.data

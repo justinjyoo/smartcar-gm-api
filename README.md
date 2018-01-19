@@ -32,7 +32,7 @@ npm install
 
 The test suite is built with **Mocha**, **Chai**, and **Supertest** (for mock HTTP requests). 
 
-Then, to run all smartcar tests:
+Then, to run all smartcar-specific tests:
 
 ```
 npm run test:smartcar-spec

@@ -29,7 +29,6 @@ app.use('/vehicles', FuelBatteryLevel)
 app.use('/vehicles', StartStopEngine)
 
 app.all('*', ( req, res ) => {
-  console.log(req.url)
   res.status(404).send('There was an error in the requested route.')
 });
 

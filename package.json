@@ -4,7 +4,12 @@
   "description": "''",
   "main": "smartcar-gm-api.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test:smartcar-spec": "mocha spec/smartcar-spec",
+    "test:gm-spec": "mocha spec/gm-spec",
+    "test:fuelBatteryLevel-gm-spec": "mocha gm-spec/fuelBatteryLevelSpec",
+    "test:security-gm-spec": "mocha gm-spec/securitySpec",
+    "test:startStopEngine-gm-spec": "gm-spec/startStopEngineSpec",
+    "test:vehicleInfo-gm-spec": "gm-spec/vehicleInfoSpec"
   },
   "repository": {
     "type": "git",

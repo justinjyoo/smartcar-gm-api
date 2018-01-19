@@ -3,13 +3,13 @@ const request = require('supertest')
 const sinon = require('sinon');
 const sandbox = sinon.createSandbox()
 
-const app = require('../server')
+const app = require('../../server')
 process.env.NODE_ENV = 'test'
 
-const construct = require('../lib/utility')
-const gmAPI = require('../lib/gmAPIRequests.js')
+const construct = require('../../lib/utility')
+const gmAPI = require('../../lib/gmAPIRequests.js')
 
-describe('GET /vehicles/:id', function() {
+describe('GET /vehicles/:id/doors', function() {
 
   beforeEach( () => {
     sandbox.stub(gmAPI, 'post')
@@ -73,7 +73,6 @@ describe('GET /vehicles/:id', function() {
     .then( res => {
       const gmResponseData = res.data.data
       const smartcarVehiclesInfoResponse = construct.doorSecObject(gmResponseData)
-      console.log(smartcarVehiclesInfoResponse)
       expect(smartcarVehiclesInfoResponse[0]).to.deep.equal(correctSmartcarRes[0])
       expect(smartcarVehiclesInfoResponse[1]).to.deep.equal(correctSmartcarRes[1])
     })

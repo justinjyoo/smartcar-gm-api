@@ -20,7 +20,6 @@ app.get('/vehicles/:id', (req, res) => {
   gmAxiosInstance.post('/getVehicleInfoService', gmAxiosConfig)
   .then( (response) => {
     let gmResponseData = response.data.data;
-    console.log(response)
     let smartcarVehiclesInfoResponse = utility.constructVehiclesInfoResponseObject(gmResponseData)
     res.status(200).send(smartcarVehiclesInfoResponse)
   })

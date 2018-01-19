@@ -1,12 +1,12 @@
-const utility = require('./lib/utility')
-const express = require('express');
+const convert = require('./lib/utility')
+const express = require('express')
 
-const app = express();
+const app = express()
 const axios = require('axios')
 const port = process.env.PORT || 3000
 
-let gmAxiosInstance = axios.create({ baseURL: 'http://gmapi.azurewebsites.net' });
-let gmAxiosConfig = { 'responseType': 'JSON' }
+let instance = axios.create({ baseURL: 'http://gmapi.azurewebsites.net' })
+let config = { 'responseType': 'JSON' }
 
 // https://localhost:3000/
 app.listen(port, () => console.log('GM to Smartcar API is listening on port 3000!'))
@@ -16,56 +16,49 @@ app.get('/', (req, res) => {
 })
 
 app.get('/vehicles/:id', (req, res) => {
-  gmAxiosConfig = Object.assign({ id: req.params.id }, gmAxiosConfig)
-  gmAxiosInstance.post('/getVehicleInfoService', gmAxiosConfig)
+  instance.post('/getVehicleInfoService', Object.assign({ id: req.params.id }, config))
   .then( (response) => {
-    let gmResponseData = response.data.data;
-    let smartcarVehiclesInfoResponse = utility.constructVehiclesInfoResponseObject(gmResponseData)
+    let gmResponseData = response.data.data
+    let smartcarVehiclesInfoResponse = convert.vehiclesInfoResponseObject(gmResponseData)
     res.status(200).send(smartcarVehiclesInfoResponse)
   })
 })
 
 app.get('/vehicles/:id/doors', (req, res) => {
-  gmAxiosConfig = Object.assign({ id: req.params.id }, gmAxiosConfig)
-  gmAxiosInstance.post('/getSecurityStatusService', gmAxiosConfig)
+  instance.post('/getSecurityStatusService', Object.assign({ id: req.params.id }, config))
   .then( (response) => {
-    let gmResponseData = response.data.data;
-    let smartcarDoorSecResponse = utility.constructDoorSecResponseObject(gmResponseData)
+    let gmResponseData = response.data.data
+    let smartcarDoorSecResponse = convert.doorSecResponseObject(gmResponseData)
     res.status(200).send(smartcarDoorSecResponse)
   })
 })
 
 app.get('/vehicles/:id/fuel', (req, res) => {
-  gmAxiosConfig = Object.assign({ id: req.params.id }, gmAxiosConfig)
-  gmAxiosInstance.post('/getEnergyService', gmAxiosConfig)
+  instance.post('/getEnergyService', Object.assign({ id: req.params.id }, config))
   .then( (response) => {
-    let gmResponseData = response.data.data;
-    let smartcarFuelResponse = utility.constructEnergyRangeObject(gmResponseData, 'fuel')
+    let gmResponseData = response.data.data
+    let smartcarFuelResponse = convert.energyRangeObject(gmResponseData, 'fuel')
     res.status(200).send(smartcarFuelResponse)
   })
 })
 
 app.get('/vehicles/:id/battery', (req, res) => {
-  gmAxiosConfig = Object.assign({ id: req.params.id }, gmAxiosConfig)
-  gmAxiosInstance.post('/getEnergyService', gmAxiosConfig)
+  instance.post('/getEnergyService', Object.assign({ id: req.params.id }, config))
   .then( (response) => {
-    let gmResponseData = response.data.data;
-    let smartcarBatteryResponse = utility.constructEnergyRangeObject(gmResponseData, 'battery')
+    let gmResponseData = response.data.data
+    let smartcarBatteryResponse = convert.energyRangeObject(gmResponseData, 'battery')
     res.status(200).send(smartcarBatteryResponse)
   })
 })
 
 app.post('/vehicles/:id/engine', (req, res) => {
-
-  gmAxiosConfig = Object.assign({
+  instance.post('/actionEngineService', Object.assign({
     id: req.params.id,
-    command: utility.convertEngineActionType(req.query.action)
-  }, gmAxiosConfig)
-
-  gmAxiosInstance.post('/actionEngineService', gmAxiosConfig)
+    command: convert.convertEngineActionType(req.query.action)
+  }, config))
   .then( (response) => {
-    let gmResponseData = response.data;
-    let smartcarEngineActionResponse = utility.constructEngineActionResponseObject(gmResponseData)
+    let gmResponseData = response.data
+    let smartcarEngineActionResponse = convert.engineActionResponseObject(gmResponseData)
     res.status(200).send(smartcarEngineActionResponse)
   })
 })

@@ -20,7 +20,7 @@ GET /vehicles/:id
 Status: 200 OK
 
 {
-  "vin": "1213231",
+  "vin": "123123412412",
   "color": "Metallic Silver",
   "doorCount": 4,
   "driveTrain": "v8"

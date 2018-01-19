@@ -97,6 +97,16 @@ POST /vehicles/:id/engine
 
 ```json
 {
+  "Content-Type": "application/json"
+}
+```
+
+|Name|Type|Description|
+|---|---|---|
+|action|string|Action to broadcast to engine.|
+
+```json
+{
   "action": "START|STOP"
 }
 ```

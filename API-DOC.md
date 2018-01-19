@@ -40,6 +40,7 @@ Status: 200 OK
 
 [
   {
+      "location": "frontLeft",
       "locked": true
     },
     {

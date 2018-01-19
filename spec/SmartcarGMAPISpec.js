@@ -1,6 +1,7 @@
+const expect = require('chai').expect;
 const request = require('request');
 const { stub } = require('sinon')
-const expect = require('chai').expect;
+
 
 describe('/vehicles/:id route', function() {
   it('should respond to GET requests to /vehicles/:id with a 200 status code', function(done) {

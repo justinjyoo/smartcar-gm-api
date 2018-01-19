@@ -26,7 +26,7 @@ app.get('/vehicles/:id', ( req, res ) => {
   instance.post( '/getVehicleInfoService', Object.assign({ id:  vehicleID }, config))
   .then(( response ) => {
     let gmResponseData = response.data.data
-    let smartcarVehiclesInfoResponse = construct.vehiclesInfoResponseObject(gmResponseData)
+    let smartcarVehiclesInfoResponse = construct.vehiclesInfoObject(gmResponseData)
     res.status(200).send(smartcarVehiclesInfoResponse)
   })
 })
@@ -43,7 +43,7 @@ app.get('/vehicles/:id/doors', ( req, res ) => {
   instance.post('/getSecurityStatusService', Object.assign({ id: vehicleID }, config))
   .then(( response ) => {
     let gmResponseData = response.data.data
-    let smartcarDoorSecResponse = construct.doorSecResponseObject(gmResponseData)
+    let smartcarDoorSecResponse = construct.doorSecObject(gmResponseData)
     res.status(200).send(smartcarDoorSecResponse)
   })
 })
@@ -100,7 +100,7 @@ app.post('/vehicles/:id/engine', ( req, res ) => {
   }, config ))
   .then(( response ) => {
     let gmResponseData = response.data
-    let smartcarEngineActionResponse = construct.engineActionResponseObject(gmResponseData)
+    let smartcarEngineActionResponse = construct.engineActionObject(gmResponseData)
     res.status(200).send(smartcarEngineActionResponse)
   })
 })

@@ -11,10 +11,6 @@ router.get('/:id', (req, res) => {
     // required parameter
   const vehicleID = req.params.id
 
-  if( !vehicleID ) {
-    res.status(400).send('A vehicle id parameter is required.')
-  }
-
   instance.post( '/getVehicleInfoService', Object.assign({ id:  vehicleID }, config))
   .then(( response ) => {
     const gmResponseData = response.data.data

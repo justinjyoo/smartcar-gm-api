@@ -12,10 +12,6 @@ router.post('/:id/engine', (req, res) => {
   const vehicleID = req.params.id
   const commandType = req.query.action
 
-  if( !vehicleID ) {
-    res.status(400).send('A vehicle id parameter is required.')
-  }
-
   if( !commandType ) {
     res.status(400).send('A engine action parameter is required.')
   }

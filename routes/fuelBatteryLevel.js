@@ -11,11 +11,6 @@ router.get('/:id/fuel', (req, res) => {
   // required parameter
   const vehicleID = req.params.id
 
-  if( !vehicleID ) {
-    res.status(400).send('A vehicle id parameter is required.')
-  }
-
-
   instance.post('/getEnergyService', Object.assign({ id: vehicleID }, config))
   .then(( response ) => {
     const gmResponseData = response.data.data
@@ -27,10 +22,6 @@ router.get('/:id/fuel', (req, res) => {
 router.get('/:id/battery', (req, res) => {
   // required parameter
   const vehicleID = req.params.id
-
-  if( !vehicleID ) {
-    res.status(400).send('A vehicle id parameter is required.')
-  }
 
   instance.post('/getEnergyService', Object.assign({ id: vehicleID }, config))
   .then(( response ) => {

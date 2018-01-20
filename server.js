@@ -28,7 +28,7 @@ app.use('/vehicles', FuelBatteryLevel);
 app.use('/vehicles', StartStopEngine);
 
 app.all('*', ( req, res ) => {
-  res.status(404).send('There was an error in the requested route.');
+  res.status(404).send('Resource not found.');
 });
 
 module.exports = app;

@@ -1,6 +1,6 @@
 const expect = require('chai').expect;
 const axios = require('axios');
-const instance = axios.create({
+const http = axios.create({
   baseURL: 'http://gmapi.azurewebsites.net',
   // if request to GM takes longer than 5 seconds the request will be aborted
   timeout: 5000
@@ -16,7 +16,7 @@ describe('POST /actionEngineService', () => {
     const vehicleID = '1234';
     const route = '/actionEngineService';
 
-    return instance.post( route, Object.assign({ id:  vehicleID, command: "START_VEHICLE" }, config))
+    return http.post( route, Object.assign({ id:  vehicleID, command: "START_VEHICLE" }, config))
     .then( res => {
       expect(res).to.have.nested.property('data');
       expect(res.data).to.have.any.keys('actionResult');

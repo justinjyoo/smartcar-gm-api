@@ -10,7 +10,7 @@ router.post('/:id/engine', ( req, res ) => {
 
   if( !commandType ) {
     res.status(400).send('A engine action parameter is required.');
-  } else if ( commandType !== 'START' && commandType !== 'STOP' ) {
+  } else if ( commandType.toUpperCase() !== 'START' && commandType.toUpperCase() !== 'STOP' ) {
     res.status(400).send('Please provide engine actions of either START or STOP.');
   }
 

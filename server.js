@@ -15,9 +15,8 @@ app.get('/', ( req, res ) => res.status( 200 ).send('Welcome to the GM-Smartcar 
 app.all('/vehicles', ( req, res ) => {
   // required parameter for all routes
   const vehicleID = req.params.id;
-  const validRequestMethod = req.method === 'GET' || req.method === 'POST';
 
-  if( !vehicleID && validRequestMethod ) {
+  if( !vehicleID ) {
     res.status(400).send('A vehicle id parameter is required.');
   }
 });

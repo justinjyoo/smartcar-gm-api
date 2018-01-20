@@ -10,7 +10,7 @@ describe('ALL /', () => {
     .post('/unknownroute')
     .then( res => {
       expect((res.statusCode)).to.equal(404);
-      expect(res.text).to.equal('There was an error in the requested route.');
+      expect(res.text).to.equal('Resource not found.');
     })
     .catch( err => {
       expect.fail(err.actual, err.expected, err.message);
@@ -22,7 +22,7 @@ describe('ALL /', () => {
     .get('/unknownroute')
     .then( res => {
       expect((res.statusCode)).to.equal(404);
-      expect(res.text).to.equal('There was an error in the requested route.');
+      expect(res.text).to.equal('Resource not found.');
     })
     .catch( err => {
       expect.fail(err.actual, err.expected, err.message);
@@ -34,7 +34,7 @@ describe('ALL /', () => {
     .delete('/vehicles/1234')
     .then( res => {
       expect((res.statusCode)).to.equal(404);
-      expect(res.text).to.equal('There was an error in the requested route.');
+      expect(res.text).to.equal('Resource not found.');
     })
     .catch( err => {
       expect.fail(err.actual, err.expected, err.message);

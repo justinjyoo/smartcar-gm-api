@@ -44,9 +44,6 @@ GM API tests ensure that the data returns as expected.
 
 To run all gm-api-specific tests:
 
-```
-npm run test:smartcar-spec
-```
 |GM API Route|Command|
 |---|---|
 |/getEnergyService|npm run test:fuelBatteryLevel-gm-spec|

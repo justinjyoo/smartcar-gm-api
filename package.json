@@ -5,6 +5,7 @@
   "main": "smartcar-gm-api.js",
   "scripts": {
     "test:smartcar-spec": "mocha spec/smartcar-spec",
+    "start": "node server.js",
     "test:gm-spec": "mocha spec/gm-spec",
     "test:fuelBatteryLevel-gm-spec": "mocha gm-spec/fuelBatteryLevelSpec",
     "test:security-gm-spec": "mocha gm-spec/securitySpec",

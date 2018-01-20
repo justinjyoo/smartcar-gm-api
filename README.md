@@ -1,6 +1,6 @@
 # smartcar-gm-api
 
-REST API for Smartcar-GM transformations. All interaction occurs through hitting various REST endpoints.
+REST API for GM-Smartcar transformations. All interaction occurs through hitting various REST endpoints.
 
 ## API Documentation
 

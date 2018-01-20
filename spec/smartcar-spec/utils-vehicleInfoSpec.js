@@ -1,25 +1,24 @@
-const expect = require('chai').expect
-const request = require('supertest')
+const expect = require('chai').expect;
+const request = require('supertest');
 const sinon = require('sinon');
-const sandbox = sinon.createSandbox()
+const sandbox = sinon.createSandbox();
 
-const app = require('../../server')
-process.env.NODE_ENV = 'test'
+const app = require('../../server');
+process.env.NODE_ENV = 'test';
 
-const construct = require('../../lib/utility')
-const gmAPI = require('../../lib/gmAPIRequests.js')
+const construct = require('../../lib/utility');
+const gmAPI = require('../../lib/gmAPIRequests.js');
 
-describe('GET /vehicles/:id', function() {
+describe('GET /vehicles/:id', () => {
 
   beforeEach( () => {
-    sandbox.stub(gmAPI, 'post')
-
-  })
+    sandbox.stub(gmAPI, 'post');
+  });
 
   afterEach( () => {
     // completely restore all fakes created through the sandbox
     sandbox.restore();
-  })
+  });
 
   it('should correctly transform GM response to Smartcar response', () => {
     const mockGMRes = {
@@ -49,25 +48,25 @@ describe('GET /vehicles/:id', function() {
           }
         }
       }
-    }
+    };
 
     const correctSmartcarRes = {
       "vin": '123123412412',
       "color": 'Metallic Silver',
       "doorCount": 4,
       "driveTrain": 'v8'
-    }
+    };
 
-    gmAPI.post.resolves(mockGMRes)
+    gmAPI.post.resolves(mockGMRes);
 
     return gmAPI.post()
     .then( res => {
-      const gmResponseData = res.data.data
-      const smartcarVehiclesInfoResponse = construct.vehiclesInfoObject(gmResponseData)
-      expect(smartcarVehiclesInfoResponse).to.deep.equal(correctSmartcarRes)
+      const gmResponseData = res.data.data;
+      const smartcarVehiclesInfoResponse = construct.vehiclesInfoObject(gmResponseData);
+      expect(smartcarVehiclesInfoResponse).to.deep.equal(correctSmartcarRes);
     })
     .catch( err => {
       expect.fail(err.actual, err.expected, err.message);
     });
-  })
+  });
 });

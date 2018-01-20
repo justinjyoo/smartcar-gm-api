@@ -9,17 +9,16 @@ process.env.NODE_ENV = 'test'
 const construct = require('../../lib/utility')
 const gmAPI = require('../../lib/gmAPIRequests.js')
 
-describe('POST /vehicles/:id/engine', function() {
+describe('POST /vehicles/:id/engine', () => {
 
   beforeEach( () => {
     sandbox.stub(gmAPI, 'post')
-
-  })
+  });
 
   afterEach( () => {
     // completely restore all fakes created through the sandbox
     sandbox.restore();
-  })
+  });
 
   it('should correctly transform GM response to Smartcar response', () => {
     const mockGMRes = {
@@ -30,11 +29,11 @@ describe('POST /vehicles/:id/engine', function() {
         "status": "EXECUTED"
         }
       }
-    }
+    };
 
-    const correctSmartcarRes = { "status": "success" }
+    const correctSmartcarRes = { "status": "success" };
 
-    gmAPI.post.resolves(mockGMRes)
+    gmAPI.post.resolves(mockGMRes);
 
     return gmAPI.post()
     .then( res => {
@@ -45,7 +44,7 @@ describe('POST /vehicles/:id/engine', function() {
     .catch( err => {
       expect.fail(err.actual, err.expected, err.message);
     });
-  })
+  });
 
   it('should correctly respond with a 400 error code when engine action parameter is missing', () => {
     return request(app)
@@ -57,9 +56,5 @@ describe('POST /vehicles/:id/engine', function() {
     .catch( err => {
       expect.fail(err.actual, err.expected, err.message);
     });
-  })
-
-
-
-
+  });
 });
